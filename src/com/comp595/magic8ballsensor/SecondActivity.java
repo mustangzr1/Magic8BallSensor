@@ -19,7 +19,7 @@ public class SecondActivity extends Activity {
 
 		t = (TextView) findViewById(R.id.textView1);
 		Intent i = getIntent();
-		t.setText(i.getStringExtra(MainActivity.ANSWER));
+		t.setText(i.getStringExtra(MainActivity.EXTRA_MESSAGE));
 	}
 
 	@Override
@@ -45,12 +45,11 @@ public class SecondActivity extends Activity {
 		return false;
 	}
 
-//	@Override
-//	public void onBackPressed() {
-//		super.onBackPressed();
-//		finish();
-//	}
-
-	
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		Intent i = new Intent(this,MainActivity.class);
+		startActivity(i);
+	}
 
 }

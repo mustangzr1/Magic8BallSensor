@@ -19,13 +19,13 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity implements SensorEventListener {
 
+	final static String EXTRA_MESSAGE = "com.comp595.MainActivity.ANSWER";
 	ImageButton ib1;
 	TextView t;
 	Toast popup;
 	SensorManager manager;
 	Sensor accel;
-	
-	public static String ANSWER = "";
+	static String ANSWER = "";
 
 	String[] words = { "It is certain", "It is decidedly so",
 			"Without a doubt", "Yes definitely", "You may rely on it",
@@ -76,9 +76,10 @@ public class MainActivity extends Activity implements SensorEventListener {
 		ANSWER = words[index].toString();
 		
 		if (speedZ < 0) {
-			Intent intent = new Intent(getBaseContext(),SecondActivity.class);
-			intent.putExtra("ANSWER", ANSWER);
+			Intent intent = new Intent(this,SecondActivity.class);
+			intent.putExtra(EXTRA_MESSAGE, ANSWER);
 			startActivity(intent);
+			manager.unregisterListener(this);
 		}
 	}
 
